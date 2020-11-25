@@ -28,8 +28,6 @@ public class Stagiaire {
 
 
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -117,6 +115,14 @@ public class Stagiaire {
 	public void setIdentifiant(String identifiant) {
 		this.identifiant = identifiant;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Stagiaire nom=" + nom + ", prenom=" + prenom + ", departement=" + departement + ", promotion="
+				+ promotion + ", annee=" + annee + ", identifiant=" + identifiant;
+	}
+	
 	
 
 }

@@ -13,21 +13,16 @@ public class FileFormator {
 	
 	private int [] espaces;
 
-	public static void main(String[] args) {
-		
-		creationFichier("C:/Users/formation/Downloads/stagiaires.txt", "test");
-
-	}
-	
-	public FileFormator(String path, String resulat) {
-		//espaces = compteEspaces(path);
-		
+	public FileFormator(String path, String resultat) {
+		espaces = compteEspaces(path);
+		//"C:/Users/formation/Downloads/stagiaires.txt", "test"
+		creationFichier(path, resultat, espaces);
 	}
 	
 	
 	
-	public static void creationFichier(String path, String fichierResultat) {
-		int [] espaces = compteEspaces(path);
+	public void creationFichier(String path, String fichierResultat, int [] espaces) {
+		//int [] espaces = compteEspaces(path);
 		
 		FileReader in = null;
 		BufferedReader br = null;
@@ -109,23 +104,22 @@ public class FileFormator {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} finally {
 			try {
-				//raf.close();
 				in.close();
 				br.close();
 				bw.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				
 				e.printStackTrace();
 			}
 		}
 		
 	}
 	
-	public static int[] compteEspaces(String path) {
+	public int[] compteEspaces(String path) {
 			
 		FileReader in = null;
 		BufferedReader br = null;
@@ -149,8 +143,6 @@ public class FileFormator {
 			String ligne1;
 			while((ligne1 = br.readLine()) != null) {
 				ligne1 = ligne1.trim().replaceAll("[(|)]", "");
-				//System.out.println(ligne1);
-				//System.out.println(ligne1.length());
 				i ++;
 				
 				if(i %6 ==0) {
@@ -161,7 +153,7 @@ public class FileFormator {
 					taillePromo = 0;
 					tailleAnnee = 0;
 					tab = 0;
-					//System.out.println("This is i: " + i);
+
 				} else  {
 
 					if(tab == 0) {
@@ -205,7 +197,7 @@ public class FileFormator {
 				maxAnnee = tailleAnnee;
 			}
 			
-			//System.out.println("This is tab:" + tab);
+
 			
 }
 				
