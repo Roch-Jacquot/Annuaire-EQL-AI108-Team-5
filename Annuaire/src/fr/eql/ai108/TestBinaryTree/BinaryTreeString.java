@@ -47,7 +47,7 @@ public class BinaryTreeString {
 		
 		//Méthode pour supprimer un élèment
 		//De même, méthode qui parcourt l'arbre jusqu'à trouver le bon élèment
-	private NodeString deleteRecursive(NodeString current, String value) {
+	    private NodeString deleteRecursive(NodeString current, String value) {
 	    if (current == null) {
 	        return null;
 	    }
