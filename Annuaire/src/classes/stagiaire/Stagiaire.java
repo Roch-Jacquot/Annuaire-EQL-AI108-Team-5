@@ -1,6 +1,8 @@
 package classes.stagiaire;
 
-public class Stagiaire {
+import java.util.Comparator;
+
+public class Stagiaire implements Comparable<Stagiaire> {
 	
 	private String nom;
 	private String prenom;
@@ -122,6 +124,15 @@ public class Stagiaire {
 		return "Stagiaire nom=" + nom + ", prenom=" + prenom + ", departement=" + departement + ", promotion="
 				+ promotion + ", annee=" + annee + ", identifiant=" + identifiant;
 	}
+
+
+	@Override
+	public int compareTo(Stagiaire stagiaire) {
+		
+		return identifiant.compareTo(stagiaire.getIdentifiant());
+	}
+
+
 	
 	
 
