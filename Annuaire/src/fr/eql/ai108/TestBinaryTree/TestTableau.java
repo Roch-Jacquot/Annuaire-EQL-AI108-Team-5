@@ -13,27 +13,13 @@ import javafx.stage.Stage;
 public class TestTableau extends Application {
 	private TableView<Stagiaire> tableView;
 	private ObservableList<Stagiaire> observablesStagiaires;
+	private StagiaireDao dao = new StagiaireDao();
 	
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
-		Stagiaire stagiaire1 = new Stagiaire("Jean", "Marc", 75, "AI108", 2020);
-		Stagiaire stagiaire2 = new Stagiaire("Durant", "Julie", 91, "AI108", 2020);
-		Stagiaire stagiaire3 = new Stagiaire("Dupont", "Romain", 92, "AI108", 2020);
-		Stagiaire stagiaire4 = new Stagiaire("Dupond", "Kevin", 93, "AI108", 2020);
-		Stagiaire stagiaire5 = new Stagiaire("Trump", "Marc", 94, "AI108", 2020);
-		Stagiaire stagiaire6 = new Stagiaire("Bidden", "Antoine", 94, "AI108", 2020);
-		Stagiaire stagiaire7 = new Stagiaire("Louvet", "William", 94, "AI108", 2020);
-		Stagiaire stagiaire8 = new Stagiaire("Deschamps", "Marcus", 94, "AI108", 2020);
-		BinaryTreeStagiaire btst = new BinaryTreeStagiaire();
-		btst.add(stagiaire1);
-		btst.add(stagiaire2);
-		btst.add(stagiaire3);
-		btst.add(stagiaire4);
-		btst.add(stagiaire5);
-		btst.add(stagiaire6);
-		btst.add(stagiaire7);
-		btst.add(stagiaire8);
-		observablesStagiaires = FXCollections.observableArrayList(btst.traverseToList());
+		
+		
+		observablesStagiaires = FXCollections.observableArrayList(dao.getAll());
 		
 		tableView = new TableView<>(observablesStagiaires);
 		TableColumn<Stagiaire, String> colNom = new TableColumn("Nom");
