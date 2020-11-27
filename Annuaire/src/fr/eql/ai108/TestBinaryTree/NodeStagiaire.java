@@ -1,5 +1,7 @@
 package fr.eql.ai108.TestBinaryTree;
 
+import classes.stagiaire.Stagiaire;
+
 public class NodeStagiaire {
 	   Stagiaire stagiaire;
 	    NodeStagiaire left;

@@ -1,5 +1,7 @@
 package fr.eql.ai108.TestBinaryTree;
 
+import classes.stagiaire.Stagiaire;
+import classes.stagiaire.StagiaireDao;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +19,6 @@ public class TestTableau extends Application {
 	
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
-		
 		
 		observablesStagiaires = FXCollections.observableArrayList(dao.getAll());
 		

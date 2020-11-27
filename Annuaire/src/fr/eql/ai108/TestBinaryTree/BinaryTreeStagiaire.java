@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import classes.stagiaire.Stagiaire;
 import classes.utilitaires.WritingFunctions;
 
 public class BinaryTreeStagiaire {

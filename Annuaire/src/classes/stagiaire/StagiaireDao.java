@@ -1,12 +1,15 @@
-package fr.eql.ai108.TestBinaryTree;
+package classes.stagiaire;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StagiaireDao {
+import fr.eql.ai108.TestBinaryTree.BinaryTreeStagiaire;
 
+
+public class StagiaireDao {
 	private File file;
+	
 	
 	//Méthode pour transformer les lignes du RAF en objet Stagiaires
 	private Stagiaire stringToStagiaire(String string) {
