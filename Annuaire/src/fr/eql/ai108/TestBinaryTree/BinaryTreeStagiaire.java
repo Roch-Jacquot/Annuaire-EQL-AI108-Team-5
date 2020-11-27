@@ -1,25 +1,46 @@
 package fr.eql.ai108.TestBinaryTree;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+import classes.utilitaires.WritingFunctions;
+
 public class BinaryTreeStagiaire {
 	NodeStagiaire root;
 	Node current;
 	List<Stagiaire> stagiaires = new ArrayList<Stagiaire>(); 
+	int index;
+	String path = "C:/Users/formation/Downloads/testStagiaire.txt";
 
+	//Formatage d'écriture :5 + 30, 30, 2, 10, 4 + 6, 6
+	
 	//Méthode pour ajouter un String
-	private NodeStagiaire addRecursiveStagiaire(NodeStagiaire current, Stagiaire stagiaire) {
+	private NodeStagiaire addRecursiveStagiaire(NodeStagiaire current, Stagiaire stagiaire, String previousIndex) {
+		
+		RandomAccessFile raf = null;
 	    if (current == null) {
-	        return new NodeStagiaire(stagiaire);
+	    	NodeStagiaire aStagiaire = new NodeStagiaire(stagiaire, index);
+	    	
+	    	WritingFunctions.ecrireAjout(raf, path, aStagiaire, previousIndex);
+	    	
+	    	index++;
+	        return aStagiaire;
 	    }
 	 
 	    if (stagiaire.compareTo(current.stagiaire) < 0) {
-	        current.left = addRecursiveStagiaire(current.left, stagiaire);
+	    	previousIndex = current.getIndex() + "G";
+	    	
+	        current.left = addRecursiveStagiaire(current.left, stagiaire, previousIndex);
 	    } else if (stagiaire.compareTo(current.stagiaire) > 0) {
-	        current.right = addRecursiveStagiaire(current.right, stagiaire);
+	    	
+	    	previousIndex = current.getIndex() + "D";
+	    	
+	        current.right = addRecursiveStagiaire(current.right, stagiaire, previousIndex);
 	    } else {
 	        // value already exists
 	        return current;
@@ -27,7 +48,7 @@ public class BinaryTreeStagiaire {
 	    return current;
 	}
 	public void add(Stagiaire stagiaire) {
-	    root = addRecursiveStagiaire(root, stagiaire);
+	    root = addRecursiveStagiaire(root, stagiaire, "");
 	}
 	
 	//Méthode pour chercher un élèment
@@ -159,6 +180,22 @@ public class BinaryTreeStagiaire {
 		super();
 		this.root = root;
 		this.current = current;
+		
+		RandomAccessFile raf = null;
+		try {
+			raf = new RandomAccessFile(path, "rw");
+			this.index = (int) raf.length()/70;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				raf.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	public BinaryTreeStagiaire() {
 		super();
