@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Queue;
 
 import classes.stagiaire.Stagiaire;
+import classes.stagiaire.StagiaireDao;
 import classes.utilitaires.WritingFunctions;
 
 public class BinaryTreeStagiaire {
@@ -16,7 +17,10 @@ public class BinaryTreeStagiaire {
 	Node current;
 	List<Stagiaire> stagiaires = new ArrayList<Stagiaire>(); 
 	int index;
+	String index2;
 	String path = "C:/Users/formation/Downloads/testStagiaire.txt";
+
+	
 
 	//Formatage d'écriture :5 + 30, 30, 2, 10, 4 + 6, 6
 	
@@ -144,6 +148,65 @@ public class BinaryTreeStagiaire {
   		return traverseInOrderToList(root);
   	}
   	
+ 
+  	
+  //1- in-order traversal to List: On fait la même en travaillant directement sur le RAF
+  	public List<Stagiaire> traverseInOrderToListRaf(String index2) {
+  		
+  		String nom = null;
+  		String prenom = null;
+  		String promotion = null;
+  		String maLigne = null;
+  		String indexG = null;
+  		String indexD = null;
+  		int departement = 0;
+  		int annee = 0;
+  		int indexInt = 0;
+  		
+  		Stagiaire currentStagiaire;
+  		byte[] tab = new byte[93]; //ajout d'une variable taille
+  		RandomAccessFile raf = null;
+  		
+  		
+			try {
+				raf = new RandomAccessFile(path, "r");
+				if(!index2.equals("     ")) {
+				//Positionnement du pointeur
+				indexInt = Integer.valueOf((index2).trim());
+				raf.seek(indexInt * 94);
+				raf.read(tab);
+				
+				//On instancie un stagiaire à partir des infos du fihier texte 
+				maLigne = new String(tab);
+				currentStagiaire = StagiaireDao.stringToStagiaire(maLigne);
+				indexG = maLigne.substring(82, 87);
+				indexD = maLigne.substring(88, 93);
+				
+				//Ajout du stagiaire du noeud courant à la liste de stagiaires
+			    traverseInOrderToListRaf(indexG);
+			    stagiaires.add(currentStagiaire);
+			    traverseInOrderToListRaf(indexD);	
+				} 
+			   } catch (IOException e) {
+				e.printStackTrace();
+			   }finally {
+				   try {
+					   raf.close();
+			   } catch (IOException e) {
+					   e.printStackTrace();
+			   }		   
+	  	    }
+			return stagiaires;
+  	}
+  	
+  //Initialisation de la méthode à l'index 0
+  	public List<Stagiaire> traverseToListRaf() {
+  		index2 = "0";
+  		return traverseInOrderToListRaf(index2);
+  	}
+  	
+
+ 
 	//Pour les avoir par lignes
 	public void traverseLevelOrder() {
 	    if (root == null) {

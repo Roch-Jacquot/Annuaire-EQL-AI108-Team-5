@@ -20,6 +20,7 @@ public class TestTableau extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		AnchorPane root = new AnchorPane();
 		
+		
 		observablesStagiaires = FXCollections.observableArrayList(dao.getAll());
 		
 		tableView = new TableView<>(observablesStagiaires);
@@ -38,7 +39,7 @@ public class TestTableau extends Application {
 		TableColumn<Stagiaire, Integer> colAnnee = new TableColumn("Annee");
 		colAnnee.setCellValueFactory(new PropertyValueFactory<>("annee"));
 		
-		tableView.getColumns().addAll(colNom, colPrenom, colDepartement, colAnnee);
+		tableView.getColumns().addAll(colNom, colPrenom, colDepartement, colPromotion, colAnnee);
 		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		root.getChildren().add(tableView);
 		AnchorPane.setTopAnchor(tableView, 5.); 
