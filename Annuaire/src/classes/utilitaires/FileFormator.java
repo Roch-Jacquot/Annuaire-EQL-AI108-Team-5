@@ -63,7 +63,8 @@ public class FileFormator {
 		
 					} else if(tab ==1) {
 						ligne1 = ligne1.replaceAll("[0-9]", "").replaceAll("( -/)", "");
-						nbLeft = espaces[tab] - ligne1.length();
+
+						bw.write(";");
 	
 					} else if(tab ==2) {
 						
@@ -79,22 +80,19 @@ public class FileFormator {
 							
 							ligne1 ="00";
 						}
+						bw.write(";");
 						
-						
-						nbLeft = espaces[tab] - ligne1.length();
-	
-					} else if(tab ==3) {
+					}
+					else if(tab ==3) {
 
-						nbLeft = espaces[tab] - ligne1.length();
-	
+						bw.write(";");
 					} else if(tab ==4) {
-						nbLeft = espaces[tab] - ligne1.length();
+
+					bw.write(";");
 					}
 					if(i != espaces[5]) {
 						bw.write(ligne1);
-						for (int j = 0; j < nbLeft; j++) {
-							bw.write(" ");
-						}
+						
 						tab ++;
 					}
 

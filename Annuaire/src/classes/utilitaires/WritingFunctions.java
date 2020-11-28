@@ -19,27 +19,27 @@ public class WritingFunctions {
 	}*/
 	
 	
-	public static void ecrireAjout(RandomAccessFile raf, String path, NodeStagiaire aStagiaire, String previousIndex) {
+	public static void ecrireAjout(RandomAccessFile raf, String previousIndex, int current, Stagiaire stagiaire) {
     	try {
-			raf = new RandomAccessFile(path, "rw");
-			raf.seek(raf.length());
 			int total = sumTableau() + 1;
-			System.out.println("J'ai " + total + " espaces");
-			ecrireStagiaire(raf, path, aStagiaire, tailleCategories);
+			ecrireStagiaire(raf, tailleCategories, current, stagiaire);
 			
 			if(previousIndex.endsWith("G")) {
-				System.out.println(previousIndex);
-				System.out.println(Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1)));
-				//int indexDuParent = Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1));
+				
+//				System.out.println(previousIndex);
+//				System.out.println(Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1)));
+
+				
+				
 				raf.seek((Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1))*total) + ((	total-1) -11));
 				System.out.println("Mon pointeur de gauche" + raf.getFilePointer());
-				raf.writeBytes(String.valueOf(aStagiaire.getIndex()));
+				raf.writeBytes(String.valueOf(current));
 				
 			} else if(previousIndex.endsWith("D")) {
 				
 				raf.seek((Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1))*total) + ((total) - 6));
 				System.out.println("Mon pointeur de droite" + raf.getFilePointer());
-				raf.writeBytes(String.valueOf(aStagiaire.getIndex()));
+				raf.writeBytes(String.valueOf(current));
 			}
 			
 		} catch (IOException e) {
@@ -56,30 +56,30 @@ public class WritingFunctions {
 		}
 	}
 	
-	public static void ecrireStagiaire(RandomAccessFile raf, String path, NodeStagiaire aStagiaire, int[] tailleCategories) {
+	public static void ecrireStagiaire(RandomAccessFile raf, int[] tailleCategories, int current, Stagiaire stagiaire) {
 		try {
-			raf.writeBytes(aStagiaire.getIndex() +"");
-			for (int i = 0; i < (tailleCategories[0] - String.valueOf(aStagiaire.getIndex()).length()); i++) {
+			raf.writeBytes(current +"");
+			for (int i = 0; i < (tailleCategories[0] - String.valueOf(current).length()); i++) {
 				raf.writeBytes(" ");
 			}
-			raf.writeBytes(aStagiaire.getStagiaire().getNom());
-			for (int i = 0; i < (tailleCategories[1] - (aStagiaire.getStagiaire().getNom().length())); i++) {
+			raf.writeBytes(stagiaire.getNom());
+			for (int i = 0; i < (tailleCategories[1] - (stagiaire.getNom().length())); i++) {
 				raf.writeBytes(" ");
 			}
-			raf.writeBytes(aStagiaire.getStagiaire().getPrenom());
-			for (int i = 0; i < (tailleCategories[2] - (aStagiaire.getStagiaire().getPrenom().length())); i++) {
+			raf.writeBytes(stagiaire.getPrenom());
+			for (int i = 0; i < (tailleCategories[2] - (stagiaire.getPrenom().length())); i++) {
 				raf.writeBytes(" ");
 			}
-			raf.writeBytes(String.valueOf(aStagiaire.getStagiaire().getDepartement()));
-			for (int i = 0; i < (tailleCategories[3] - String.valueOf(aStagiaire.getStagiaire().getDepartement()).length()); i++) {
+			raf.writeBytes(String.valueOf(stagiaire.getDepartement()));
+			for (int i = 0; i < (tailleCategories[3] - String.valueOf(stagiaire.getDepartement()).length()); i++) {
 				raf.writeBytes(" ");
 			}
-			raf.writeBytes(String.valueOf(aStagiaire.getStagiaire().getPromotion()));
-			for (int i = 0; i < (tailleCategories[4] - aStagiaire.getStagiaire().getPromotion().length()); i++) {
+			raf.writeBytes(String.valueOf(stagiaire.getPromotion()));
+			for (int i = 0; i < (tailleCategories[4] - stagiaire.getPromotion().length()); i++) {
 				raf.writeBytes(" ");
 			}
-			raf.writeBytes(String.valueOf(aStagiaire.getStagiaire().getAnnee()));
-			for (int i = 0; i < (tailleCategories[5] - String.valueOf(aStagiaire.getStagiaire().getAnnee()).length()); i++) {
+			raf.writeBytes(String.valueOf(stagiaire.getAnnee()));
+			for (int i = 0; i < (tailleCategories[5] - String.valueOf(stagiaire.getAnnee()).length()); i++) {
 				raf.writeBytes(" ");
 			}
 			raf.writeBytes("G");
