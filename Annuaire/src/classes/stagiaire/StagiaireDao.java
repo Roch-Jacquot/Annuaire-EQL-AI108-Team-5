@@ -1,6 +1,8 @@
 package classes.stagiaire;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,37 @@ public class StagiaireDao {
 		return currentStagiaire;
 	}
 	
+	//Méthode pour obtenir une ligne à partir d'un index
+	public static String indexToString(String indexString) {
+		RandomAccessFile raf = null;
+		byte[] tab = new byte[93];
+		String maLigne = null;
+		int indexInt = 0;
+		String path = "C:/Users/formation/Downloads/testStagiaire.txt";
+		try {
+			raf = new RandomAccessFile(path, "r");
+			indexInt = Integer.valueOf((indexString).trim());
+			raf.seek(indexInt * 94);
+			raf.read(tab);
+			maLigne = new String(tab);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				raf.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return maLigne;
+	}
+	
+	//Methode pour récupérer un stagiaire à partir de l'index
+	public static Stagiaire indexToStagiaire(String indexString) {
+		return stringToStagiaire(indexToString(indexString));
+	}
 	
 	//1.2 Méthode pour transformer les objets Stagiaires en arbre binaire
 	private BinaryTreeStagiaire CreationArbre() {
