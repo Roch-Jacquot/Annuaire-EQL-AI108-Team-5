@@ -78,7 +78,6 @@ public class FileFormator {
 							ligne1 = "00";
 						}
 						
-						
 						if(ligne1.length() == 0){
 							
 							ligne1 ="00";
