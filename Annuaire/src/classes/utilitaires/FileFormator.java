@@ -16,6 +16,9 @@ public class FileFormator {
 	public FileFormator(String path, String resultat) {
 		espaces = compteEspaces(path);
 		//"C:/Users/formation/Downloads/stagiaires.txt", "test"
+		for (int i : espaces) {
+			System.out.println(espaces);
+		}
 		creationFichier(path, resultat, espaces);
 	}
 	
@@ -68,7 +71,7 @@ public class FileFormator {
 	
 					} else if(tab ==2) {
 						
-
+						
 						try {
 							int temp = Integer.parseInt(ligne1);
 						} catch(NumberFormatException e) {
@@ -79,6 +82,10 @@ public class FileFormator {
 						if(ligne1.length() == 0){
 							
 							ligne1 ="00";
+						}
+						if(ligne1.length() == 1){
+							
+							ligne1 ="0" + ligne1;
 						}
 						bw.write(";");
 						
