@@ -1,4 +1,4 @@
-package fr.eql.ai108.TestBinaryTree;
+package classes.tree;
 
 import java.io.BufferedWriter;
 import java.io.File;

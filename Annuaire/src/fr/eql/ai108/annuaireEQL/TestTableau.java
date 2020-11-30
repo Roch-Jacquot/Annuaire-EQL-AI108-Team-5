@@ -1,4 +1,4 @@
-package fr.eql.ai108.TestBinaryTree;
+package fr.eql.ai108.annuaireEQL;
 
 import classes.stagiaire.Stagiaire;
 import classes.stagiaire.StagiaireDao;
