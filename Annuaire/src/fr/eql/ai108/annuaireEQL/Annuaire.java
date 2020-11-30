@@ -1,5 +1,6 @@
 package fr.eql.ai108.annuaireEQL;
 
+import classes.utilitaires.FileFormator;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,15 +12,18 @@ public class Annuaire extends Application {
 
 	Stage fenetre;
 	Scene accueilUtil, accueilAdmin;
+	static String path = "c:/Annuaire/stagiaires.txt";
+	static String resultat = "MonFichierIntermediaire";
+	static String resultatFinal = "MonFichierFinal";
 
 	public static void main(String[] args) {
+		//Création d'un fichier intermédiaire avec un stagiaire par ligne
+		FileFormator ff = new FileFormator(path, resultat);
+		//Création du fichier final
+		ff.FinalFileFormator(resultat, resultatFinal);
 		launch(args);
-
-
-
 	}
 
-	@Override
 	public void start(Stage primaryStage) throws Exception {
 		fenetre = primaryStage;
 

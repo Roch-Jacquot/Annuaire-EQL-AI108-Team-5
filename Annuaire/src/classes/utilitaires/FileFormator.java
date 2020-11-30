@@ -9,6 +9,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import classes.stagiaire.Stagiaire;
+import classes.tree.ReadWriteTree;
+
 public class FileFormator {
 	
 	private int [] espaces;
@@ -16,9 +19,6 @@ public class FileFormator {
 	public FileFormator(String path, String resultat) {
 		espaces = compteEspaces(path);
 		//"C:/Users/formation/Downloads/stagiaires.txt", "test"
-		for (int i : espaces) {
-			System.out.println(espaces);
-		}
 		creationFichier(path, resultat, espaces);
 	}
 	
@@ -101,8 +101,6 @@ public class FileFormator {
 						
 						tab ++;
 					}
-
-				
 				}
 					
 			}
@@ -227,6 +225,39 @@ public class FileFormator {
 
 		return resultat;
 	}
+	
+	//Création du fichier final
+	public void FinalFileFormator(String resultat, String resultatFinal) {
+		
+		FileReader in = null;
+        BufferedReader br = null;
+        ReadWriteTree rwt = null;
+        
+        try {
+            in = new FileReader(resultat);
+            br = new BufferedReader(in);
+            String ligne1;
+            rwt = new ReadWriteTree();
+            
+            while((ligne1 = br.readLine()) != null) {
+                String [] monStagiaire = ligne1.split(";");
+                Stagiaire stagiaire = new Stagiaire(monStagiaire[0], monStagiaire[1], Integer.valueOf(monStagiaire[2]), monStagiaire[3], Integer.valueOf(monStagiaire[4]));
+                rwt.add(stagiaire, resultatFinal);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } finally {
+            try {
+                in.close();
+                br.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+	}
+
 
 	public int[] getEspaces() {
 		return espaces;

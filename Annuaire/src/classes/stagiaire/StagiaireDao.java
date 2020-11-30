@@ -7,10 +7,11 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 
+import classes.tree.StagiaireTree;
 import fr.eql.ai108.TestBinaryTree.BinaryTreeStagiaire;
 
 public class StagiaireDao {
-	BinaryTreeStagiaire treeText;
+	StagiaireTree stagiaireTree;
 	private File file;
 	
 	//Méthode pour transformer les lignes du RAF en objet Stagiaires
@@ -32,7 +33,7 @@ public class StagiaireDao {
 		byte[] tab = new byte[93];
 		String maLigne = null;
 		int indexInt = 0;
-		String path = "C:/Users/formation/Downloads/testStagiaire.txt";
+		String path = "MonFichierFinal";
 		try {
 			raf = new RandomAccessFile(path, "r");
 			indexInt = Integer.valueOf((indexString).trim());
@@ -64,9 +65,9 @@ public class StagiaireDao {
 	}
 	
 	public List<Stagiaire> getAll(){
-		treeText = new BinaryTreeStagiaire();
+		stagiaireTree = new StagiaireTree();
 		List<Stagiaire> stagiaires = new ArrayList<>();
-		stagiaires = treeText.traverseToListRaf();
+		stagiaires = stagiaireTree.traverseToListRaf();
 		return stagiaires;	
 	}
 }

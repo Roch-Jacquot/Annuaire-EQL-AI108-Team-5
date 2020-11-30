@@ -24,7 +24,7 @@ public class Stagiaire implements Comparable<Stagiaire> {
 		this.departement = departement;
 		this.promotion = promotion;
 		this.annee = annee;
-		this.identifiant = nom+prenom;
+		this.identifiant = nom+prenom+promotion;
 		
 	}
 

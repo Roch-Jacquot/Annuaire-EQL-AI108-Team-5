@@ -57,6 +57,8 @@ public class WritingFunctions {
 	}
 	
 	public static void ecrireStagiaire(RandomAccessFile raf, int[] tailleCategories, int current, Stagiaire stagiaire) {
+		int tailleDepartement = 0;
+		String departement = "0";
 		try {
 			raf.writeBytes(current +"");
 			for (int i = 0; i < (tailleCategories[0] - String.valueOf(current).length()); i++) {
@@ -70,9 +72,13 @@ public class WritingFunctions {
 			for (int i = 0; i < (tailleCategories[2] - (stagiaire.getPrenom().length())); i++) {
 				raf.writeBytes(" ");
 			}
-			raf.writeBytes(String.valueOf(stagiaire.getDepartement()));
-			for (int i = 0; i < (tailleCategories[3] - String.valueOf(stagiaire.getDepartement()).length()); i++) {
-				raf.writeBytes(" ");
+			tailleDepartement = String.valueOf(stagiaire.getDepartement()).length();
+			if(tailleDepartement == 2) {
+				raf.writeBytes(String.valueOf(stagiaire.getDepartement()));	
+			}
+			else {
+				departement += String.valueOf(stagiaire.getDepartement());
+				raf.writeBytes(departement);
 			}
 			raf.writeBytes(String.valueOf(stagiaire.getPromotion()));
 			for (int i = 0; i < (tailleCategories[4] - stagiaire.getPromotion().length()); i++) {
