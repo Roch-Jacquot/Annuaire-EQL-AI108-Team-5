@@ -25,7 +25,7 @@ public class PopUpConnexion {
 		fenetre.setMinWidth(250);
 		
 		VBox vb = new VBox(20);
-		vb.getChildren().addAll(identifiant, id, motDePasse, mdp);
+		vb.getChildren().addAll(identifiant, id, motDePasse, mdp, connexion);
 		vb.setAlignment(Pos.CENTER);
 		
 		Scene login = new Scene(vb);
