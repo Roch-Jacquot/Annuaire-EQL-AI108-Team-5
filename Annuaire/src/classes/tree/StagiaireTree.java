@@ -14,14 +14,101 @@ import classes.utilitaires.WritingFunctions;
 import fr.eql.ai108.TestBinaryTree.Node;
 import fr.eql.ai108.TestBinaryTree.NodeStagiaire;
 
-public class StagiaireTree {
+public class StagiaireTree  {
 	Stagiaire rootStagiaire;
 	List<Stagiaire> stagiaires = new ArrayList<Stagiaire>(); 
 	int index;
 	String indexString;
 	String path = "C:/Users/formation/Downloads/testStagiaire.txt";
 	
+	private RandomAccessFile raf = null;
 	
+	
+	private void addRecursiveStagiaire(int current, Stagiaire stagiaire, String previousIndex, RandomAccessFile raf) {
+
+		Stagiaire stagiairePrecedent = null;
+			//placer ma ligne
+		
+			try {
+				raf.seek(current*94);
+				byte[] ligneByte = new byte[93];
+				raf.read(ligneByte);
+				String ligne = new String(ligneByte);
+				
+			    if (ligne.trim().length() == 0) { 
+			    	
+			    	WritingFunctions.ecrireAjout(raf, previousIndex, current, stagiaire);
+			    	
+			        return;
+			    } else {
+			    	//System.out.println(Integer.valueOf(ligne.substring(77, 81)));
+			    	stagiairePrecedent = StagiaireDao.stringToStagiaire(ligne);
+			    }
+			    
+				 
+			    if (stagiaire.compareTo(stagiairePrecedent) < 0) {
+			    	previousIndex = current + "G";
+			    	
+				    if(ligne.substring(82, 87).trim().length() == 0) {
+				    	current = (int) raf.length()/94;
+				    	System.out.println(current);
+				    	
+				    } else {
+	
+				    	current = Integer.valueOf(ligne.substring(82, 87).trim());
+				    }
+			    
+			        addRecursiveStagiaire(current, stagiaire, previousIndex, raf);
+			        
+			    } else if (stagiaire.compareTo(stagiairePrecedent) > 0) {
+			    	
+			    	previousIndex = current + "D";
+
+				    if(ligne.substring(88, 93).trim().length() == 0) {
+				    	current = (int) raf.length()/94;
+				    } else {
+				    	current = Integer.valueOf(ligne.substring(88, 93).trim());
+				    }
+			        addRecursiveStagiaire(current, stagiaire, previousIndex, raf);
+			    } else {
+			        // value already exists
+			        return;
+			    }
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			}
+
+		
+
+
+		    return;
+		}
+	
+	
+		public void add(Stagiaire stagiaire) {
+			RandomAccessFile raf = null;
+			try {
+				raf = new RandomAccessFile(path, "rw");
+				addRecursiveStagiaire(0, stagiaire, "", raf);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+				try {
+					raf.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+			
+		}
+		
+		
+		
+		
 
 	//Formatage d'écriture :5 + 30, 30, 2, 10, 4 + 6, 6
 	
