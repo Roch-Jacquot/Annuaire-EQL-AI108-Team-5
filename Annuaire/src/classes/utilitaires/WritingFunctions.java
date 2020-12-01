@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import classes.stagiaire.Stagiaire;
-import fr.eql.ai108.TestBinaryTree.NodeStagiaire;
 
 public class WritingFunctions {
 

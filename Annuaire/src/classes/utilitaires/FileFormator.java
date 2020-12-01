@@ -237,12 +237,12 @@ public class FileFormator {
             in = new FileReader(resultat);
             br = new BufferedReader(in);
             String ligne1;
-            rwt = new ReadWriteTree();
+            rwt = new ReadWriteTree(resultatFinal);
             
             while((ligne1 = br.readLine()) != null) {
                 String [] monStagiaire = ligne1.split(";");
                 Stagiaire stagiaire = new Stagiaire(monStagiaire[0], monStagiaire[1], Integer.valueOf(monStagiaire[2]), monStagiaire[3], Integer.valueOf(monStagiaire[4]));
-                rwt.add(stagiaire, resultatFinal);
+                rwt.add(stagiaire);
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block
