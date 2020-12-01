@@ -23,7 +23,7 @@ public class FileFormator {
 	}
 	
 	
-	///
+	
 	public void creationFichier(String path, String fichierResultat, int [] espaces) {
 		//int [] espaces = compteEspaces(path);
 		
