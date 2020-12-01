@@ -28,6 +28,9 @@ public class PopUpConnexion {
 		Button connexion = new Button("Connexion");
 		GridPane.setConstraints(connexion, 1, 2);
 		
+		connexion.setOnAction(e -> System.out.println(id.getText()));
+		connexion.setOnAction(e -> System.out.println(mdp.getText()));
+		
 		fenetre.setPadding(new Insets(10, 10, 10, 10));
 		fenetre.setVgap(8);
 		fenetre.setHgap(10);
