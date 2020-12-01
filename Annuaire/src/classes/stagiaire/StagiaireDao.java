@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes.tree.StagiaireTree;
-import fr.eql.ai108.TestBinaryTree.BinaryTreeStagiaire;
 
 public class StagiaireDao {
 	StagiaireTree stagiaireTree;
@@ -61,10 +60,6 @@ public class StagiaireDao {
 		return stringToStagiaire(indexToString(indexString));
 	}
 	
-	//1.2 Méthode pour transformer les objets Stagiaires en arbre binaire
-	private BinaryTreeStagiaire CreationArbre() {
-		return null;
-	}
 	
 	public List<Stagiaire> getAll(){
 		stagiaireTree = new StagiaireTree();
