@@ -50,6 +50,7 @@ public class Annuaire extends Application {
 		Button connexion = new Button("Connexion");
 		connexion.setOnAction(e -> PopUpConnexion.display("Connexion administrateur", "Entrer identifiants"));
 		aide2.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
+		fichier2.setOnAction(e -> new PopUpAnnuaire());
 
 		//Disposition page admin
 		HBox hb2 = new HBox(15);
