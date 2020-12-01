@@ -22,7 +22,7 @@ public class StagiaireTree  {
 	
 	private RandomAccessFile raf = null;
 	
-	
+	 
 	private void addRecursiveStagiaire(int current, Stagiaire stagiaire, String previousIndex, RandomAccessFile raf) {
 
 		Stagiaire stagiairePrecedent = null;
