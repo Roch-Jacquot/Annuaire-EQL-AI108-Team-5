@@ -36,9 +36,12 @@ public class ReadWriteTree {
 		
 			try {
 				raf.seek(current*94);
+				/*
 				byte[] ligneByte = new byte[93];
 				raf.read(ligneByte);
 				String ligne = new String(ligneByte);
+				*/
+				String ligne = ReadtoString(raf);
 				
 			    if (ligne.trim().length() == 0) { //if (ligne1 = readLine() == null;
 			    	
@@ -113,7 +116,7 @@ public class ReadWriteTree {
 		
 		//Méthode pour supprimer un élèment
 		//De même, méthode qui parcourt l'arbre jusqu'à trouver le bon élèment
-	    private void deleteRecursive(/*NodeStagiaire current, Stagiaire stagiaire*/ int current, Stagiaire stagiaire, String previousIndex, RandomAccessFile raf) {
+	    private void deleteRecursive(int current, Stagiaire stagiaire, String previousIndex, RandomAccessFile raf) {
 	    	
 	    	Stagiaire stagiairePrecedent = null;
 	    	System.out.println(stagiaire);
@@ -124,20 +127,19 @@ public class ReadWriteTree {
 
 	    	
 	    if (ligne.trim().length() == 0) {
-	    	System.out.println("MA ligne fait 0");
+	    	
 	        return;
 	    }
 	    
-		System.out.println("Ma ligne en début de méthode" + ligne);
-		System.out.println("Mon previous index " + previousIndex);
+
 		stagiairePrecedent = StagiaireDao.stringToStagiaire(ligne);
 		String gaucheEnfant = ligne.substring(82, 87).trim();
 		String droiteEnfant = ligne.substring(88, 93).trim();
 		
 	    
-	    System.out.println("Je vais rentrer dans mes conditions");
-	    System.out.println(stagiaire);
-	    System.out.println(stagiairePrecedent);
+//	    System.out.println("Je vais rentrer dans mes conditions");
+//	    System.out.println(stagiaire);
+//	    System.out.println(stagiairePrecedent);
 	    
 	    
 	    if (stagiaire.compareTo(stagiairePrecedent) == 0) {
@@ -148,7 +150,7 @@ public class ReadWriteTree {
 				for (int i = 0; i <  93; i++) {
 					raf.writeBytes(" ");
 	    	}
-				System.out.println("Effacement sans enfant");
+//				System.out.println("Effacement sans enfant");
 				
 				raf.seek((Integer.valueOf(previousIndex.trim())*94) + 82);
 				for (int i = 0; i <  5; i++) {
@@ -178,7 +180,7 @@ public class ReadWriteTree {
 				raf.writeBytes(ligne.substring(0, 5));
 				raf.writeBytes(ligneEnfant.substring(5));
 				
-				System.out.println("Effacement si enfant à gauche");
+//				System.out.println("Effacement si enfant à gauche");
 				
 				return;
 				
@@ -203,7 +205,7 @@ public class ReadWriteTree {
 				raf.writeBytes(ligne.substring(0, 5));
 				raf.writeBytes(ligneEnfant.substring(5));
 				
-				System.out.println("Effacement si enfant à droite");
+//				System.out.println("Effacement si enfant à droite");
 				
 				return;
 	    	}
@@ -222,8 +224,6 @@ public class ReadWriteTree {
 			
 			
 			stagiairePrecedent = StagiaireDao.stringToStagiaire(ligneSmallestStagiaire);
-			
-			System.out.println(ligne);
 			
 			
 			//Sauter à la place du stagiaire que j'efface et j'ecraser avec le stagiaire petit
@@ -246,11 +246,10 @@ public class ReadWriteTree {
 
 	    
 		    if ((stagiaire.compareTo(stagiairePrecedent)) < 0) {
-		    	
-		    	System.out.println("Il est plus petit ?");
+
 		    	
 		    	gaucheEnfant = ligne.substring(82, 87).trim();
-		    	System.out.println("This is my gauche enfant " + gaucheEnfant);
+		    	//System.out.println("This is my gauche enfant " + gaucheEnfant);
 		    	previousIndex = ligne.substring(0, 5);
 		        //deleteRecursive(Integer.valueOf(gaucheEnfant), stagiaire, previousIndex, raf);
 		        
@@ -269,7 +268,7 @@ public class ReadWriteTree {
 		    	int droiteEnfantExist = Integer.valueOf(droiteEnfant);
 		    	deleteRecursive(droiteEnfantExist, stagiaire, previousIndex, raf);
 		    } catch (NumberFormatException e) {
-		    	System.out.println("Ce nimbre n'existe pas");
+		    	System.out.println("Ce stagiaire n'existe pas sur la droite");
 		    }
 		    
 		    
@@ -291,8 +290,7 @@ public class ReadWriteTree {
 	    		//on lit la ligne de l'enfant
 				
 				String ligneEnfant = ReadtoString(raf);
-				System.out.println(ligneEnfant);
-
+				
 				String gaucheEnfant = ligneEnfant.substring(82, 87).trim();
 				index = ligneEnfant.substring(0, 5).trim();
 				if(gaucheEnfant.length() == 0) {

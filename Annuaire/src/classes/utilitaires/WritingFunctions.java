@@ -31,13 +31,13 @@ public class WritingFunctions {
 				
 				
 				raf.seek((Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1))*total) + ((	total-1) -11));
-				System.out.println("Mon pointeur de gauche" + raf.getFilePointer());
+
 				raf.writeBytes(String.valueOf(current));
 				
 			} else if(previousIndex.endsWith("D")) {
 				
 				raf.seek((Integer.valueOf(previousIndex.substring(0, previousIndex.length()-1))*total) + ((total) - 6));
-				System.out.println("Mon pointeur de droite" + raf.getFilePointer());
+
 				raf.writeBytes(String.valueOf(current));
 			}
 			
