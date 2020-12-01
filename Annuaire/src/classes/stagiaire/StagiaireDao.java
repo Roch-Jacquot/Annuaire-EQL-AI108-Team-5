@@ -27,6 +27,8 @@ public class StagiaireDao {
 		return currentStagiaire;
 	}
 	
+	
+	
 	//Méthode pour obtenir une ligne à partir d'un index
 	public static String indexToString(String indexString) {
 		RandomAccessFile raf = null;

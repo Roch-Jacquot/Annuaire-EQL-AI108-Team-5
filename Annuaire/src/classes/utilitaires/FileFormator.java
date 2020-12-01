@@ -234,6 +234,8 @@ public class FileFormator {
         ReadWriteTree rwt = null;
         
         try {
+        	File nettoyage = new File(resultatFinal);
+            nettoyage.delete();
             in = new FileReader(resultat);
             br = new BufferedReader(in);
             String ligne1;
