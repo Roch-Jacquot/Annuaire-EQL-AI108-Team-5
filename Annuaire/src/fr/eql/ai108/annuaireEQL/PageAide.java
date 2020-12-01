@@ -12,9 +12,9 @@ public class PageAide {
 		
 		Stage fenetre = new Stage();
 		
-		Label aide1 = new Label("blablabla");
-		Label aide2 = new Label("blablabla");
-		Label aide3 = new Label("blablabla");
+		Label aide1 = new Label("Cliquer sur Interface Administrateur pour accéder aux fonctions administrateurs");
+		Label aide2 = new Label("Cliquer sur Annuaire pour accéder à la liste des stagiaires");
+		Label aide3 = new Label("Cliquer sur connexion pour entrer ses identifiants administrateurs");
 		
 		VBox aide = new VBox(10);
 		aide.getChildren().addAll(aide1, aide2, aide3);
