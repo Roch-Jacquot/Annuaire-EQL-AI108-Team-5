@@ -7,12 +7,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-public class Annuaire extends Application {
+public class Annuaire extends Application {	
 
 
 	Stage fenetre;
 	Scene accueilUtil, accueilAdmin;
-	static String path = "c:/Annuaire/stagiaires.txt";
+	static String path = "stagiaires.txt";
 	static String resultat = "MonFichierIntermediaire";
 	static String resultatFinal = "MonFichierFinal";
 
@@ -42,6 +42,7 @@ public class Annuaire extends Application {
 		hb.getChildren().addAll(aide ,interfaceAdmin, fichier);
 		accueilUtil = new Scene(hb, 305, 200);
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
+		fichier.setOnAction(e -> new PopUpAnnuaire());
 
 		//Bouton 2
 		Button aide2 = new Button("Aide");
