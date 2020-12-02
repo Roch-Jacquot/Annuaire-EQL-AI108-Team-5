@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class InterfaceAdmin extends Application{
@@ -32,6 +33,11 @@ public class InterfaceAdmin extends Application{
 
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
 		fichier.setOnAction(e -> new PopUpAnnuaire());
+		
+		HBox hbox = new HBox();
+		hbox.setSpacing(10);
+		hbox.getChildren().addAll(aide, fichier,connexion);
+		root.setTop(hbox);
 
 		//Page d'accueil = accueil utilisateur
 

@@ -39,18 +39,22 @@ public class Annuaire extends Application {
 		
 		//TOP
 		
+		
 		Button aide = new Button("Aide");
 		aide.setPadding(new Insets(5, 5, 5, 5));
 		Button fichier = new Button("Annuaire");
 		fichier.setPadding(new Insets(5, 5, 5, 5));
 		Button connexion = new Button("Connexion");
 		connexion.setPadding(new Insets(5, 5, 5, 5));
-		root.setTop(aide);
-		root.setTop(fichier);
-		root.setTop(connexion);
+		HBox hbox = new HBox();
+		hbox.setSpacing(10);
+		hbox.getChildren().addAll(aide, fichier,connexion);
+		root.setTop(hbox);
 		
 		
 		// CENTER
+		
+		
 		
 		
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
