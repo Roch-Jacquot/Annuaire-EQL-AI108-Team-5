@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class StagiaireDao {
 	}
 	
 	
-	
+		
 	//Méthode pour obtenir une ligne à partir d'un index
 	public static String indexToString(String indexString) {
 		RandomAccessFile raf = null;
@@ -40,7 +41,7 @@ public class StagiaireDao {
 			indexInt = Integer.valueOf((indexString).trim());
 			raf.seek(indexInt * 94);
 			raf.read(tab);
-			maLigne = new String(tab);
+			maLigne = new String(tab, StandardCharsets.ISO_8859_1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
