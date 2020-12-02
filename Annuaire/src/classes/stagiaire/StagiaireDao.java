@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import classes.tree.StagiaireTree;
+import fr.eql.ai108.annuaireEQL.RechercheTableau;
 
 public class StagiaireDao {
 	StagiaireTree stagiaireTree;
 	private File file;
 	
-	//MÃ©thode pour transformer les lignes du RAF en objet Stagiaires
+	
+	
+	//Méthode pour transformer les lignes du RAF en objet Stagiaires
 	public static Stagiaire stringToStagiaire(String maLigne) {
 		String nom = maLigne.substring(5,35).trim();
 		String prenom = maLigne.substring(35,65).trim();
@@ -27,9 +30,7 @@ public class StagiaireDao {
 		return currentStagiaire;
 	}
 	
-	
-		
-	//MÃ©thode pour obtenir une ligne Ã  partir d'un index
+	//Méthode pour obtenir une ligne à partir d'un index
 	public static String indexToString(String indexString) {
 		RandomAccessFile raf = null;
 		byte[] tab = new byte[93];
@@ -42,7 +43,7 @@ public class StagiaireDao {
 			raf.seek(indexInt * 94);
 			raf.read(tab);
 			maLigne = new String(tab, StandardCharsets.ISO_8859_1);
-		} catch (IOException e) {
+		} catch (IOException e) { 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
@@ -56,16 +57,22 @@ public class StagiaireDao {
 		return maLigne;
 	}
 	
-	//Methode pour rÃ©cupÃ©rer un stagiaire Ã  partir de l'index
-	public static Stagiaire indexToStagiaire(String indexString) {
+	//Methode pour récupérer un stagiaire à partir de l'index
+	public static  Stagiaire indexToStagiaire(String indexString) {
 		return stringToStagiaire(indexToString(indexString));
 	}
-	
 	
 	public List<Stagiaire> getAll(){
 		stagiaireTree = new StagiaireTree();
 		List<Stagiaire> stagiaires = new ArrayList<>();
 		stagiaires = stagiaireTree.traverseToListRaf();
+		return stagiaires;	
+	}
+	public List<Stagiaire> getAllRecherche(Stagiaire stagiaireRecherche){
+		stagiaireTree = new StagiaireTree();
+		RechercheTableau maRecherche = new RechercheTableau();
+		List<Stagiaire> stagiaires = new ArrayList<>();
+		stagiaires = maRecherche.stagiairesRecherches(stagiaireRecherche);
 		return stagiaires;	
 	}
 }
