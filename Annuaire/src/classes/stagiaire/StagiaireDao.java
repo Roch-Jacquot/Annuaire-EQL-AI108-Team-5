@@ -12,12 +12,12 @@ import classes.tree.StagiaireTree;
 import fr.eql.ai108.annuaireEQL.RechercheTableau;
 
 public class StagiaireDao {
-	StagiaireTree stagiaireTree;
+	private StagiaireTree stagiaireTree;
 	private File file;
 	
 	
 	
-	//Méthode pour transformer les lignes du RAF en objet Stagiaires
+	//Mï¿½thode pour transformer les lignes du RAF en objet Stagiaires
 	public static Stagiaire stringToStagiaire(String maLigne) {
 		String nom = maLigne.substring(5,35).trim();
 		String prenom = maLigne.substring(35,65).trim();
@@ -30,7 +30,7 @@ public class StagiaireDao {
 		return currentStagiaire;
 	}
 	
-	//Méthode pour obtenir une ligne à partir d'un index
+	//Mï¿½thode pour obtenir une ligne ï¿½ partir d'un index
 	public static String indexToString(String indexString) {
 		RandomAccessFile raf = null;
 		byte[] tab = new byte[93];
@@ -57,7 +57,7 @@ public class StagiaireDao {
 		return maLigne;
 	}
 	
-	//Methode pour récupérer un stagiaire à partir de l'index
+	//Methode pour rï¿½cupï¿½rer un stagiaire ï¿½ partir de l'index
 	public static  Stagiaire indexToStagiaire(String indexString) {
 		return stringToStagiaire(indexToString(indexString));
 	}
@@ -75,4 +75,22 @@ public class StagiaireDao {
 		stagiaires = maRecherche.stagiairesRecherches(stagiaireRecherche);
 		return stagiaires;	
 	}
+
+	public StagiaireTree getStagiaireTree() {
+		return stagiaireTree;
+	}
+
+	public void setStagiaireTree(StagiaireTree stagiaireTree) {
+		this.stagiaireTree = stagiaireTree;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+	
+	
 }
