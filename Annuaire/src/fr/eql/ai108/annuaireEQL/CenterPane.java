@@ -48,6 +48,62 @@ public class CenterPane extends VBox {
 		
 		
 	}
+
+
+
+
+	public Text getTextIntroUser() {
+		return textIntroUser;
+	}
+
+
+
+
+	public void setTextIntroUser(Text textIntroUser) {
+		this.textIntroUser = textIntroUser;
+	}
+
+
+
+
+	public Text getTextExplicationUser() {
+		return textExplicationUser;
+	}
+
+
+
+
+	public void setTextExplicationUser(Text textExplicationUser) {
+		this.textExplicationUser = textExplicationUser;
+	}
+
+
+
+
+	public Text getTextIntroAdmin() {
+		return textIntroAdmin;
+	}
+
+
+
+
+	public void setTextIntroAdmin(Text textIntroAdmin) {
+		this.textIntroAdmin = textIntroAdmin;
+	}
+
+
+
+
+	public Text getTextExplicationAdmin() {
+		return textExplicationAdmin;
+	}
+
+
+
+
+	public void setTextExplicationAdmin(Text textExplicationAdmin) {
+		this.textExplicationAdmin = textExplicationAdmin;
+	}
 	
 	
 	
