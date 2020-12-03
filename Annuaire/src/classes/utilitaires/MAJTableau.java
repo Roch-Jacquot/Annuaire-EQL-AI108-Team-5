@@ -50,4 +50,30 @@ public class MAJTableau extends AnchorPane {
 		
 		
 	}
+
+	public TableView<Stagiaire> getTableView() {
+		return tableView;
+	}
+
+	public void setTableView(TableView<Stagiaire> tableView) {
+		this.tableView = tableView;
+	}
+
+	public ObservableList<Stagiaire> getObservablesStagiaires() {
+		return observablesStagiaires;
+	}
+
+	public void setObservablesStagiaires(ObservableList<Stagiaire> observablesStagiaires) {
+		this.observablesStagiaires = observablesStagiaires;
+	}
+
+	public StagiaireDao getDao() {
+		return dao;
+	}
+
+	public void setDao(StagiaireDao dao) {
+		this.dao = dao;
+	}
+	
+	
 }

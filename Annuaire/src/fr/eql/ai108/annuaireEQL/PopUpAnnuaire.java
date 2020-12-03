@@ -1,5 +1,7 @@
 package fr.eql.ai108.annuaireEQL;
 
+import java.io.IOException;
+
 import classes.stagiaire.Stagiaire;
 import classes.stagiaire.StagiaireDao;
 import classes.utilitaires.MAJTableau;
@@ -46,11 +48,12 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 	private TableView<Stagiaire> tableView;
 	private ObservableList<Stagiaire> observablesStagiaires;
 	private ObservableList<Stagiaire> observablesStagiairesRecherches;
-	private StagiaireDao dao = new StagiaireDao();
+	private StagiaireDao dao; 
 	
 	public PopUpAnnuaire() {
 		//super();
 		
+		dao = new StagiaireDao();
 		Stage annuairePopUp = new Stage();
 		
 		anchorPane = new AnchorPane();
@@ -225,9 +228,40 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 				Stagiaire stagiaire = new Stagiaire(nom, prenom, departement, promotion, annee);
 				dao.getStagiaireTree().add(stagiaire);
 				//PopUpAnnuaire test = new PopUpAnnuaire();
-				getBorderPane().setBottom(new MAJTableau());
+				update();
 			}
 		});
+		
+		btnSupprimer.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				String nom = getTfNom().getText();
+				String prenom = getTfPrenom().getText();
+				int departement = Integer.valueOf(getTfDepartement().getText());
+				String promotion = getTfPromotion().getText();
+				int annee = Integer.valueOf(getTfAnnee().getText());
+				Stagiaire stagiaire = new Stagiaire(nom, prenom, departement, promotion, annee);
+				dao.getStagiaireTree().delete(stagiaire);
+				//getBorderPane().setBottom(new MAJTableau());
+				//NOTE, il faut remettre à vide les chammps après suppression
+				update();
+				getTfNom().setText("");
+				getTfPrenom().setText("");
+				getTfDepartement().setText("");
+				getTfPromotion().setText("");
+				getTfAnnee().setText("");
+			}
+		});
+	}
+	
+	
+	private void update() {
+
+		observablesStagiaires = FXCollections.observableArrayList(dao.getAll());
+		tableView.getItems().clear();
+		tableView.getItems().addAll(observablesStagiaires);
+		
 	}
 
 	public Button getBtnRechercher() {
