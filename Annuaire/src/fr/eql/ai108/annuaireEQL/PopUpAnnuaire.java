@@ -101,17 +101,13 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 		//Cr�ation de la HBox des bouttons
 		btnRechercher = new Button("Rechercher");
 		btnAjouter = new Button("Ajouter");
-		btnMettreAJour = new Button("Mettre a jour");
 		btnSupprimer = new Button("Supprimer");
-		btnRetour = new Button("Retour");
 		
 		btnRechercher.setPrefSize(150., 10.);
 		btnAjouter.setPrefSize(150., 10.);
-		btnMettreAJour.setPrefSize(150., 10.);
 		btnSupprimer.setPrefSize(150., 10.);
-		btnRetour.setPrefSize(150., 10.);
 		
-		gridPaneButtons.addRow(0, btnRechercher, btnAjouter, btnMettreAJour, btnSupprimer, btnRetour);
+		gridPaneButtons.addRow(0, btnRechercher, btnAjouter, btnSupprimer);
 		gridPaneButtons.setHgap(100);
 		hBoxButtons.getChildren().add(gridPaneButtons);
 		
@@ -220,7 +216,7 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				if(getTfPromotion().getText().length() > 2  || getTfAnnee().getText().length() != 4) {
+				if(getTfDepartement().getText().length() > 2  || getTfAnnee().getText().length() != 4) {
 					getTfDepartement().setText(String.valueOf("00"));
 					getTfAnnee().setText(String.valueOf("2020"));
 				} 
