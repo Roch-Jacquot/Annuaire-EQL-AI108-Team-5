@@ -1,0 +1,2 @@
+package fr.eql.ai108.annuaireEQL;
+Annuaire has been compiled by a more recent version of the Java Runtime (class file version 58.0), this version of the Java Runtime only recognizes class file versions up to 52.0
