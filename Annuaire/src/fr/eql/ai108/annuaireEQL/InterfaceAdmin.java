@@ -28,14 +28,13 @@ public class InterfaceAdmin extends Application{
 		aide.setPadding(new Insets(5, 5, 5, 5));
 		Button fichier = new Button("Annuaire");
 		fichier.setPadding(new Insets(5, 5, 5, 5));
-		Button connexion = new Button("Connexion");
 
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
 		fichier.setOnAction(e -> new PopUpAnnuaire(true));
 		
 		HBox hbox = new HBox();
 		hbox.setSpacing(10);
-		hbox.getChildren().addAll(aide, fichier,connexion);
+		hbox.getChildren().addAll(aide, fichier);
 		root.setTop(hbox);
 		root.setCenter(new CenterPane("admin"));
 
