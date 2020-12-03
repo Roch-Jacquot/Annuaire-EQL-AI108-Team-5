@@ -39,15 +39,15 @@ public class PopUpConnexion {
 		
 		connexion.setOnAction(new EventHandler<ActionEvent>() {
 			
-			@SuppressWarnings("unlikely-arg-type")
 			@Override
 			public void handle(ActionEvent event) {
 				String checkId = id.getText().toString();
 				String checkMdp = mdp.getText().toString();
-				if(checkId.equals(id) && checkMdp.equals(mdp)) {
+				if(checkId.equals(user) && checkMdp.equals(pw)) {
+					connexion.setOnAction(e -> new InterfaceAdmin());
 					messageConnexion.setText("Bravo");
 					messageConnexion.setTextFill(Color.GREEN);;
-					connexion.setOnAction(e -> new InterfaceAdmin());
+					
 				}else {
 					messageConnexion.setText("identifiant/mot de passe incorrect");
 					messageConnexion.setTextFill(Color.RED);
