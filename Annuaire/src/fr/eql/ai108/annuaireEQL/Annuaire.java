@@ -1,5 +1,7 @@
 package fr.eql.ai108.annuaireEQL;
 
+import java.io.File;
+
 import classes.utilitaires.FileFormator;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -19,10 +21,13 @@ public class Annuaire extends Application {
 	static String resultatFinal = "MonFichierFinal";
 
 	public static void main(String[] args) {
-		//Création d'un fichier intermédiaire avec un stagiaire par ligne
-		FileFormator ff = new FileFormator(path, resultat);
-		//Création du fichier final
-		ff.FinalFileFormator(resultat, resultatFinal);
+		//Cr�ation du fichier de sauvegarde s'il n'existe pas
+		File f = new File(resultatFinal);
+		
+		if(!f.exists()) { 
+			FileFormator ff = new FileFormator(path, resultat);
+			ff.FinalFileFormator(resultat, resultatFinal);
+		}
 		launch(args);
 	}
 
@@ -54,7 +59,7 @@ public class Annuaire extends Application {
 		
 		// CENTER
 		
-		CenterPane centerPane = new CenterPane(path);
+		
 		
 		
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
