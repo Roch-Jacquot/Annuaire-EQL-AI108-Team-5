@@ -1,6 +1,8 @@
 package fr.eql.ai108.annuaireEQL;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import classes.stagiaire.Stagiaire;
 import classes.stagiaire.StagiaireDao;
@@ -151,50 +153,6 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 		annuairePopUp.setTitle("Annuaire");
 		annuairePopUp.show();
 		
-		//To do :cr�er un bouton recherche qui enclenche la deuxi�me scene
-		
-		//Cr�ation d'une nouvelle scene pour la recherche de stagiaires lorsque l'on appuit sur le bouton recherche
-		
-		//Instanciation d'un nouveau stagiire a partir des textFiled
-		
-//		Stagiaire stagiaireRecherche = new Stagiaire();
-//		
-//		AnchorPane anchorPaneRecherche = new AnchorPane();
-//		observablesStagiairesRecherches = FXCollections.observableArrayList(dao.getAllRecherche(stagiaireRecherche));
-//		
-//		tableView = new TableView<>(observablesStagiairesRecherches);
-//		
-//		TableColumn<Stagiaire, String> colNomRecherche = new TableColumn("Nom");
-//		colNomRecherche.setCellValueFactory(new PropertyValueFactory<>("nom"));
-//		
-//		TableColumn<Stagiaire, String> colPrenomRecherche = new TableColumn("Prenom");
-//		colPrenomRecherche.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-//		
-//		TableColumn<Stagiaire, Integer> colDepartementRecherche = new TableColumn("Departement");
-//		colDepartementRecherche.setCellValueFactory(new PropertyValueFactory<>("departement"));
-//		
-//		TableColumn<Stagiaire, String> colPromotionRecherche = new TableColumn("Promotion");
-//		colPromotionRecherche.setCellValueFactory(new PropertyValueFactory<>("promotion"));
-//		
-//		TableColumn<Stagiaire, Integer> colAnneeRecherche = new TableColumn("Annee");
-//		colAnneeRecherche.setCellValueFactory(new PropertyValueFactory<>("annee"));
-//		
-//		tableView.getColumns().addAll(colNomRecherche, colPrenomRecherche, colDepartementRecherche, colPromotionRecherche, colAnneeRecherche);
-//		tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-//		
-//		anchorPane.getChildren().add(tableView);
-//		
-//		anchorPane.setPrefSize(1000, 500);
-//		AnchorPane.setTopAnchor(tableView, 5.);
-//		AnchorPane.setLeftAnchor(tableView, 5.);
-//		AnchorPane.setRightAnchor(tableView, 5.);
-//		AnchorPane.setBottomAnchor(tableView, 5.);
-//		
-//
-//		annuairePopUp.setScene(scene);
-//		annuairePopUp.show();
-//		
-//		affichageRecherche = new Scene(anchorPaneRecherche);
 		tableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Stagiaire>() {
 
 			@Override
@@ -252,15 +210,56 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 				getTfAnnee().setText("");
 			}
 		});
+		
+        btnRechercher.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				String nom = getTfNom().getText();
+				String prenom = getTfPrenom().getText();
+				String departement = getTfDepartement().getText().trim();
+				int departementInt = stringToInt(departement);
+				String promotion = getTfPromotion().getText();
+				String annee = getTfAnnee().getText().trim();
+				int anneeInt = stringToInt(annee);
+				
+				Stagiaire stagiaire = new Stagiaire(nom, prenom, departementInt, promotion, anneeInt);
+				List<Stagiaire> stagiairesRecherches = new ArrayList<Stagiaire>();
+				RechercheTableau rt = new RechercheTableau();
+				
+				stagiairesRecherches = RechercheTableau.stagiairesRecherches(stagiaire);
+				System.out.println(stagiairesRecherches);
+				
+				observablesStagiaires = FXCollections.observableArrayList(stagiairesRecherches);
+				tableView.getItems().clear();
+				tableView.getItems().addAll(observablesStagiaires);
+				
+				getTfNom().setText("");
+				getTfPrenom().setText("");
+				getTfDepartement().setText("");
+				getTfPromotion().setText("");
+				getTfAnnee().setText("");
+			}
+		});
 	}
-	
-	
+
 	private void update() {
 
 		observablesStagiaires = FXCollections.observableArrayList(dao.getAll());
 		tableView.getItems().clear();
 		tableView.getItems().addAll(observablesStagiaires);
 		
+	}
+	
+	private int stringToInt(String string) {
+		int monInt = 0;
+		if(string != "" && string != " " && string != "  " && string != null && string.length() >= 2) {
+			monInt = Integer.valueOf(string); /////////////////////////////////////////////////////////////////////////////
+		}
+		else {
+			monInt = 0;
+		}
+		return monInt;
 	}
 
 	public Button getBtnRechercher() {
