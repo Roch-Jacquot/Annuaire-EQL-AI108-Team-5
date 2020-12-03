@@ -52,7 +52,9 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 	private ObservableList<Stagiaire> observablesStagiairesRecherches;
 	private StagiaireDao dao; 
 	
-	public PopUpAnnuaire() {
+	//private boolean admin = false;
+	
+	public PopUpAnnuaire(boolean admin) {
 		//super();
 		
 		dao = new StagiaireDao();
@@ -100,16 +102,44 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 		GridPane gridPaneLabels = new GridPane();
 		HBox hBoxLbl = new HBox();
 		
+		
 		//Cr�ation de la HBox des bouttons
 		btnRechercher = new Button("Rechercher");
 		btnAjouter = new Button("Ajouter");
 		btnSupprimer = new Button("Supprimer");
+		btnRetour = new Button("Retour");
 		
 		btnRechercher.setPrefSize(150., 10.);
 		btnAjouter.setPrefSize(150., 10.);
 		btnSupprimer.setPrefSize(150., 10.);
-		
-		gridPaneButtons.addRow(0, btnRechercher, btnAjouter, btnSupprimer);
+		btnRetour.setPrefSize(150., 10.);
+		if(admin) {
+			gridPaneButtons.addRow(0, btnRechercher, btnAjouter, btnSupprimer, btnRetour);
+			btnSupprimer.setOnAction(new EventHandler<ActionEvent>() {
+				
+				@Override
+				public void handle(ActionEvent event) {
+					String nom = getTfNom().getText();
+					String prenom = getTfPrenom().getText();
+					int departement = Integer.valueOf(getTfDepartement().getText());
+					String promotion = getTfPromotion().getText();
+					int annee = Integer.valueOf(getTfAnnee().getText());
+					Stagiaire stagiaire = new Stagiaire(nom, prenom, departement, promotion, annee);
+					dao.getStagiaireTree().delete(stagiaire);
+					//getBorderPane().setBottom(new MAJTableau());
+					//NOTE, il faut remettre à vide les chammps après suppression
+					update();
+					getTfNom().setText("");
+					getTfPrenom().setText("");
+					getTfDepartement().setText("");
+					getTfPromotion().setText("");
+					getTfAnnee().setText("");
+				}
+			});
+		} else {
+			gridPaneButtons.addRow(0, btnRechercher, btnAjouter, btnRetour);
+		}
+		//gridPaneButtons.addRow(0, btnRechercher, btnAjouter, btnSupprimer);
 		gridPaneButtons.setHgap(100);
 		hBoxButtons.getChildren().add(gridPaneButtons);
 		
@@ -189,27 +219,15 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 			}
 		});
 		
-		btnSupprimer.setOnAction(new EventHandler<ActionEvent>() {
+		btnRetour.setOnAction(new EventHandler<ActionEvent>() {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				String nom = getTfNom().getText();
-				String prenom = getTfPrenom().getText();
-				int departement = Integer.valueOf(getTfDepartement().getText());
-				String promotion = getTfPromotion().getText();
-				int annee = Integer.valueOf(getTfAnnee().getText());
-				Stagiaire stagiaire = new Stagiaire(nom, prenom, departement, promotion, annee);
-				dao.getStagiaireTree().delete(stagiaire);
-				//getBorderPane().setBottom(new MAJTableau());
-				//NOTE, il faut remettre à vide les chammps après suppression
 				update();
-				getTfNom().setText("");
-				getTfPrenom().setText("");
-				getTfDepartement().setText("");
-				getTfPromotion().setText("");
-				getTfAnnee().setText("");
 			}
 		});
+		
+
 		
         btnRechercher.setOnAction(new EventHandler<ActionEvent>() {
 			
@@ -228,7 +246,6 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 				RechercheTableau rt = new RechercheTableau();
 				
 				stagiairesRecherches = RechercheTableau.stagiairesRecherches(stagiaire);
-				System.out.println(stagiairesRecherches);
 				
 				observablesStagiaires = FXCollections.observableArrayList(stagiairesRecherches);
 				tableView.getItems().clear();

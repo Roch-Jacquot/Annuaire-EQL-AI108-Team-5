@@ -16,7 +16,7 @@ public class InterfaceAdmin extends Application{
 	public static void display(String title, String message) {
 		// TODO Auto-generated method stub
 
-		
+		fenetre = new Stage();
 
 		//Disposition des boutons page utilisateur
 		BorderPane root = new BorderPane();
@@ -31,7 +31,7 @@ public class InterfaceAdmin extends Application{
 		Button connexion = new Button("Connexion");
 
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
-		fichier.setOnAction(e -> new PopUpAnnuaire());
+		fichier.setOnAction(e -> new PopUpAnnuaire(true));
 		
 		HBox hbox = new HBox();
 		hbox.setSpacing(10);
@@ -42,7 +42,7 @@ public class InterfaceAdmin extends Application{
 
 		admin = new Scene(root, 300, 300);
 		fenetre.setScene(admin);
-		fenetre.setTitle("Annuaire stagiaires AI");
+		fenetre.setTitle("Page administrateur");
 		fenetre.show();
 	}
 

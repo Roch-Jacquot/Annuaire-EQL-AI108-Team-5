@@ -21,7 +21,7 @@ public class Annuaire extends Application {
 	static String resultatFinal = "MonFichierFinal";
 
 	public static void main(String[] args) {
-		//Création du fichier de sauvegarde s'il n'existe pas
+		//Crï¿½ation du fichier de sauvegarde s'il n'existe pas
 		File f = new File(resultatFinal);
 		
 		if(!f.exists()) { 
@@ -63,7 +63,7 @@ public class Annuaire extends Application {
 		
 		
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));
-		fichier.setOnAction(e -> new PopUpAnnuaire());
+		fichier.setOnAction(e -> new PopUpAnnuaire(false));
 		connexion.setOnAction(e -> PopUpConnexion.display("Identifiez-vous", "Connexion"));
 	
 
