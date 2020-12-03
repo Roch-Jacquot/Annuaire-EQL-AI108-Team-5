@@ -55,6 +55,7 @@ public class Annuaire extends Application {
 		hbox.setSpacing(10);
 		hbox.getChildren().addAll(aide, fichier,connexion);
 		root.setTop(hbox);
+		root.setCenter(new CenterPane(""));
 		
 		
 		// CENTER
@@ -69,7 +70,7 @@ public class Annuaire extends Application {
 
 		//Page d'accueil = accueil utilisateur
 		
-		accueilUtil = new Scene(root, 300, 300);
+		accueilUtil = new Scene(root, 930, 300);
 		fenetre.setScene(accueilUtil);
 		fenetre.setTitle("Annuaire stagiaires AI");
 		fenetre.show();
