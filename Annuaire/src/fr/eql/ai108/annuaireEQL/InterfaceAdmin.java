@@ -37,10 +37,11 @@ public class InterfaceAdmin extends Application{
 		hbox.setSpacing(10);
 		hbox.getChildren().addAll(aide, fichier,connexion);
 		root.setTop(hbox);
+		root.setCenter(new CenterPane("admin"));
 
 		//Page d'accueil = accueil utilisateur
 
-		admin = new Scene(root, 300, 300);
+		admin = new Scene(root, 950, 300);
 		fenetre.setScene(admin);
 		fenetre.setTitle("Page administrateur");
 		fenetre.show();
