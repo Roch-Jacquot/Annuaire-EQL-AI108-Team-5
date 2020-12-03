@@ -10,14 +10,13 @@ import javafx.stage.Stage;
 
 public class InterfaceAdmin extends Application{
 
-	Stage fenetre;
-	Scene admin;
+	static Stage fenetre;
+	static Scene admin;
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+	public static void display(String title, String message) {
 		// TODO Auto-generated method stub
 
-		fenetre = primaryStage;
+		
 
 		//Disposition des boutons page utilisateur
 		BorderPane root = new BorderPane();
@@ -45,6 +44,12 @@ public class InterfaceAdmin extends Application{
 		fenetre.setScene(admin);
 		fenetre.setTitle("Annuaire stagiaires AI");
 		fenetre.show();
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
