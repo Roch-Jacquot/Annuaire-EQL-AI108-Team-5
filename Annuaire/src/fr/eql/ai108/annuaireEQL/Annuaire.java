@@ -54,7 +54,7 @@ public class Annuaire extends Application {
 		
 		// CENTER
 		
-		
+		CenterPane centerPane = new CenterPane(path);
 		
 		
 		aide.setOnAction(e -> PageAide.display("Aide", "Didacticiel"));

@@ -36,26 +36,26 @@ public class PopUpConnexion {
 		Label messageConnexion = new Label();
 		
 		//Actions du bouton connexion
-		
-		connexion.setOnAction(new EventHandler<ActionEvent>() {
-			
-			@Override
-			public void handle(ActionEvent event) {
-				String checkId = id.getText().toString();
-				String checkMdp = mdp.getText().toString();
-				if(checkId.equals(user) && checkMdp.equals(pw)) {
-					connexion.setOnAction(e -> new InterfaceAdmin());
-					messageConnexion.setText("Bravo");
-					messageConnexion.setTextFill(Color.GREEN);;
-					
-				}else {
-					messageConnexion.setText("identifiant/mot de passe incorrect");
-					messageConnexion.setTextFill(Color.RED);
-				}
-				id.setText("");
-				mdp.setText("");
-			}
-		});
+		connexion.setOnAction(e -> new InterfaceAdmin());
+//		connexion.setOnAction(new EventHandler<ActionEvent>() {
+//			
+//			@Override
+//			public void handle(ActionEvent event) {
+//				String checkId = id.getText().toString();
+//				String checkMdp = mdp.getText().toString();
+//				if(checkId.equals(user) && checkMdp.equals(pw)) {
+//					connexion.setOnAction(e -> new InterfaceAdmin());
+//					messageConnexion.setText("Bravo");
+//					messageConnexion.setTextFill(Color.GREEN);;
+//					
+//				}else {
+//					messageConnexion.setText("identifiant/mot de passe incorrect");
+//					messageConnexion.setTextFill(Color.RED);
+//				}
+//				id.setText("");
+//				mdp.setText("");
+//			}
+//		});
 		
 		fenetre.setPadding(new Insets(10, 10, 10, 10));
 		fenetre.setVgap(8);
