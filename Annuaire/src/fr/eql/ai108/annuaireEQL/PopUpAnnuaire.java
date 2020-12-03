@@ -220,6 +220,10 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 			
 			@Override
 			public void handle(ActionEvent event) {
+				if(getTfPromotion().getText().length() > 2  || getTfAnnee().getText().length() != 4) {
+					getTfDepartement().setText(String.valueOf("00"));
+					getTfAnnee().setText(String.valueOf("2020"));
+				} 
 				String nom = getTfNom().getText();
 				String prenom = getTfPrenom().getText();
 				int departement = Integer.valueOf(getTfDepartement().getText());
@@ -227,7 +231,6 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 				int annee = Integer.valueOf(getTfAnnee().getText());
 				Stagiaire stagiaire = new Stagiaire(nom, prenom, departement, promotion, annee);
 				dao.getStagiaireTree().add(stagiaire);
-				//PopUpAnnuaire test = new PopUpAnnuaire();
 				update();
 			}
 		});
