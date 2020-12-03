@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import classes.stagiaire.Stagiaire;
-import classes.tree.ReadWriteTree;
+import classes.tree.StagiaireTree;
 
 public class FileFormator {
 	
@@ -231,7 +231,7 @@ public class FileFormator {
 		
 		FileReader in = null;
         BufferedReader br = null;
-        ReadWriteTree rwt = null;
+        StagiaireTree rwt = null;
         
         try {
         	File nettoyage = new File(resultatFinal);
@@ -239,7 +239,7 @@ public class FileFormator {
             in = new FileReader(resultat);
             br = new BufferedReader(in);
             String ligne1;
-            rwt = new ReadWriteTree(resultatFinal);
+            rwt = new StagiaireTree();
             
             while((ligne1 = br.readLine()) != null) {
                 String [] monStagiaire = ligne1.split(";");

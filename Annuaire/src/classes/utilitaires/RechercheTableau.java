@@ -9,17 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RechercheTableau {
-	public static void main(String[] args) {
-		StagiaireDao dao = new StagiaireDao();
-		ObservableList<Stagiaire> observablesStagiaires;
-		List<Stagiaire> stagiairesRecherches;
-		observablesStagiaires = FXCollections.observableArrayList(dao.getAll());
-		
-		Stagiaire stagiaireRecherche = new Stagiaire("", "", 0, "", 0);
-		
-		stagiairesRecherches = stagiairesRecherches(stagiaireRecherche);
-		System.out.println(stagiairesRecherches);
-	}
 	
 	public List<Stagiaire> stagiairesRecherches(Stagiaire stagiaire){
 		
@@ -57,7 +46,7 @@ public class RechercheTableau {
 			boolean validation4 = false;
 			boolean validation5 = false;
 			
-			//On test les valeurs recherchés par rapport à celle du stagiaire courant
+			//On test les valeurs recherchï¿½s par rapport ï¿½ celle du stagiaire courant
 			validation1 = verification(validation, nomCurrentStagiaire, nomStagiaireRecherche);
 			validation2 = verification(validation1, prenomCurrentStagiaire, prenomStagiaireRecherche);
 			validation3 = verification(validation2, departementStringStagiaire, departementString);
