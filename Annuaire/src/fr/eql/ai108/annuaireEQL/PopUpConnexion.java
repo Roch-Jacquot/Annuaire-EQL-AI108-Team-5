@@ -59,7 +59,8 @@ public class PopUpConnexion {
 				if(checkId.equals(user) && checkMdp.equals(pw)) {
 					InterfaceAdmin.display("Fenêtre admin", "Bravo"); 
 					messageConnexion.setText("Bravo");
-					messageConnexion.setTextFill(Color.GREEN);;
+					messageConnexion.setTextFill(Color.GREEN);
+					popup.close();;
 					
 				}
 				else {
