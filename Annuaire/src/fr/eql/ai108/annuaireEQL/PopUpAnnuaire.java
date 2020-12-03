@@ -84,8 +84,8 @@ public class PopUpAnnuaire /*extends AnchorPane*/ {
 		
 		anchorPane.getChildren().add(tableView);
 		
-		anchorPane.setPrefSize(1000, 5000);
-		anchorPane.setMinSize(1000, 5000);
+		anchorPane.setPrefSize(1000, 1000);
+		anchorPane.setMinSize(1000, 1000);
 		AnchorPane.setTopAnchor(tableView, 5.);
 		AnchorPane.setLeftAnchor(tableView, 5.);
 		AnchorPane.setRightAnchor(tableView, 5.);

@@ -52,7 +52,7 @@ public class FileFormator {
 			while((ligne1 = br.readLine()) != null) {
 				
 				ligne1 = ligne1.trim().replaceAll("[(|)]", "").replaceAll("( - )", "-");
-				int nbLeft = 0;
+				
 				i ++;
 				
 				if(i%6 ==0 && i != espaces[5]) {
@@ -62,7 +62,7 @@ public class FileFormator {
 				}  else {
 					
 					if(tab ==0) {
-						nbLeft = espaces[0] - ligne1.length();
+						ligne1 = ligne1.toUpperCase();
 		
 					} else if(tab ==1) {
 						ligne1 = ligne1.replaceAll("[0-9]", "").replaceAll("( -/)", "");
